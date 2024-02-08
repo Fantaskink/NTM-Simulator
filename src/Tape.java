@@ -9,6 +9,11 @@ public class Tape {
         this.headPosition = 0;
     }
 
+    public Tape(Tape tape) {
+        this.tape = tape.tape;
+        this.headPosition = tape.headPosition;
+    }
+
     public void write(tapeSymbol symbol) {
         tape.set(headPosition, symbol);
     }
