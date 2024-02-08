@@ -31,6 +31,12 @@ public class Branch {
             System.out.println(getIndentString() + "Branch accepted");
             return;
         }
+
+        if (this.getCurrentState().getName() == "r") {
+            System.out.println(getIndentString() + "Branch rejected");
+            return;
+        }
+
         for(Transition transition : this.getCurrentState().getTransitions()) {
             if (transition.readSymbol() == this.getTape().read()) {
                 this.branch(transition);

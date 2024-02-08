@@ -14,7 +14,7 @@ public class Main {
         start.addTransition(new Transition(start, tapeSymbol.ONE, start, tapeSymbol.ONE, 1));
         start.addTransition(new Transition(start, tapeSymbol.BLANK, accept, tapeSymbol.BLANK, 0));
 
-        Branch NTM = new Branch(new Tape(new ArrayList<tapeSymbol>(Arrays.asList(tapeSymbol.ZERO,tapeSymbol.ZERO,tapeSymbol.ONE))), start, 0);
+        Branch NTM = new Branch(new Tape(new ArrayList<>(Arrays.asList(tapeSymbol.ZERO, tapeSymbol.ZERO, tapeSymbol.ONE))), start, 0);
 
         NTM.processBranch();
 
