@@ -5,8 +5,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        List<State> states = new ArrayList<>();
-
         State start = new State("q_s");
         State accept = new State("t");
         State reject = new State("r");
@@ -14,9 +12,9 @@ public class Main {
         start.addTransition(new Transition(start, tapeSymbol.ZERO, start, tapeSymbol.X, 1));
         start.addTransition(new Transition(start, tapeSymbol.ZERO, start, tapeSymbol.ZERO, 1));
         start.addTransition(new Transition(start, tapeSymbol.ONE, start, tapeSymbol.ONE, 1));
-        start.addTransition(new Transition(start, tapeSymbol.BLANK, accept, tapeSymbol.BLANK, 1));
+        start.addTransition(new Transition(start, tapeSymbol.BLANK, accept, tapeSymbol.BLANK, 0));
 
-        Branch NTM = new Branch(new Tape(new ArrayList<tapeSymbol>(Arrays.asList(tapeSymbol.ZERO,tapeSymbol.ZERO,tapeSymbol.ONE))), start);
+        Branch NTM = new Branch(new Tape(new ArrayList<tapeSymbol>(Arrays.asList(tapeSymbol.ZERO,tapeSymbol.ZERO,tapeSymbol.ONE))), start, 0);
 
         NTM.processBranch();
 
