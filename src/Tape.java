@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tape {
@@ -10,7 +11,7 @@ public class Tape {
     }
 
     public Tape(Tape tape) {
-        this.tape = tape.tape;
+        this.tape = new ArrayList<>(tape.tape);
         this.headPosition = tape.headPosition;
     }
 

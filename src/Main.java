@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,14 +39,11 @@ public class Main {
         qxhat.addTransition(new Transition(qxhat, tapeSymbol.ONE, q1, tapeSymbol.X, 1));
         qxhat.addTransition(new Transition(qxhat, tapeSymbol.X, qxhat, tapeSymbol.X, 1));
 
-        Tape NTMTape = new Tape(new ArrayList<>(Arrays.asList(tapeSymbol.ZERO, tapeSymbol.ONE, tapeSymbol.ZERO, tapeSymbol.ONE)));
+        Tape NTMTape = new Tape(new ArrayList<>(Arrays.asList(tapeSymbol.ONE, tapeSymbol.ZERO, tapeSymbol.ZERO, tapeSymbol.ONE)));
 
         Branch NTM = new Branch(NTMTape, start, 0);
 
         NTM.processBranch();
-
-
-
     }
 }
 
