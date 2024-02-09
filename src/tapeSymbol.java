@@ -1,5 +1,5 @@
 public enum tapeSymbol {
-    BLANK, ZERO, ONE, X, X_HAT,
+    BLANK, ZERO, ONE, X, Y, X_HAT,
     ;
 
     @Override
@@ -8,8 +8,9 @@ public enum tapeSymbol {
             case BLANK -> "_";
             case ZERO -> "0";
             case ONE -> "1";
-            case X -> "x";
-            case X_HAT -> "x̂";
+            case X -> "X";
+            case Y -> "Y";
+            case X_HAT -> "X̂";
         };
     }
 }

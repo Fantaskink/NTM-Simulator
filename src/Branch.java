@@ -24,28 +24,44 @@ public class Branch {
     public void processBranch() {
         System.out.println(getIndentString() + "Tape contents:" + this.getTape().toString() + " Current state: " + this.getCurrentState().getName());
         if (this.getCurrentState().getName() == "t") {
-            System.out.println(getIndentString() + "Branch accepted");
+            System.out.println(getIndentString() + "Branch accepted\n");
             return;
         }
 
         if (this.getCurrentState().getName() == "r") {
-            System.out.println(getIndentString() + "Branch rejected");
+            System.out.println(getIndentString() + "Branch rejected\n");
             return;
         }
 
-        //System.out.println(this.getCurrentState().getTransitions().size());
+
         for(Transition transition : this.getCurrentState().getTransitions()) {
+            int addDepth;
+            if (this.getValidTransitionCount() > 1) {
+                addDepth = 1;
+            } else {
+                addDepth = 0;
+            }
             if (transition.readSymbol() == this.getTape().read()) {
-                this.branch(transition);
+                this.branch(transition, addDepth);
             }
         }
     }
 
-    public void branch(Transition transition) {
-        Branch nextBranch = new Branch(this.getTape(), transition.destination(), this.getDepth() + 1);
+    public void branch(Transition transition, int addDepth) {
+        Branch nextBranch = new Branch(this.getTape(), transition.destination(), this.getDepth() + addDepth);
         nextBranch.getTape().write(transition.writeSymbol());
         nextBranch.getTape().moveHead(transition.headDirection());
         nextBranch.processBranch();
+    }
+
+    public int getValidTransitionCount() {
+        int count = 0;
+        for(Transition transition : this.getCurrentState().getTransitions()) {
+            if (transition.readSymbol() == this.getTape().read()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private String getIndentString() {
